@@ -3,12 +3,13 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM php:7.4-fpm-buster
+FROM php:7.1-fpm-buster
 
 LABEL maintainer="dominik@pfaffenbauer.at"
 
 RUN set -eux; \
     DPKG_ARCH="$(dpkg --print-architecture)"; \
+    mkdir -p /usr/share/man/man1; \
     apt-get update; \
     apt-get install -y lsb-release; \
     echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" > /etc/apt/sources.list.d/backports.list; \
@@ -31,7 +32,7 @@ RUN set -eux; \
     docker-php-ext-configure pcntl --enable-pcntl; \
     docker-php-ext-install pcntl intl mbstring mysqli bcmath bz2 soap xsl pdo pdo_mysql fileinfo exif zip opcache sockets; \
     \
-    wget https://imagemagick.org/archive/ImageMagick.tar.gz; \
+    wget --no-check-certificate https://imagemagick.org/archive/ImageMagick.tar.gz; \
         tar -xvf ImageMagick.tar.gz; \
         cd ImageMagick-7.*; \
         ./configure; \
