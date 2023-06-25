@@ -12,7 +12,7 @@ RUN set -eux; \
     mkdir -p /usr/share/man/man1; \
     apt-get update; \
     apt-get install -y lsb-release; \
-    echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" > /etc/apt/sources.list.d/backports.list; \
+    echo "deb [trusted=yes] http://deb.debian.org/debian $(lsb_release -sc)-backports main" > /etc/apt/sources.list.d/backports.list; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         autoconf automake libtool nasm make pkg-config libz-dev build-essential openssl g++ \
@@ -65,7 +65,7 @@ RUN set -eux; \
         apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
 
 RUN echo "upload_max_filesize = 100M" >> /usr/local/etc/php/conf.d/20-pimcore.ini; \
-    echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/20-pimcore.ini; \
+    echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/20-pimcore.ini; \
     echo "short_open_tag = off" >> /usr/local/etc/php/conf.d/20-pimcore.ini; \
     echo "post_max_size = 100M" >> /usr/local/etc/php/conf.d/20-pimcore.ini
 
