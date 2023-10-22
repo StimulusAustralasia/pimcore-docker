@@ -5,7 +5,7 @@
 #
 FROM php:7.3-fpm-bullseye
 
-LABEL maintainer="dominik@pfaffenbauer.at"
+LABEL maintainer="ales@stimulus.com.au"
 
 RUN set -eux; \
     DPKG_ARCH="$(dpkg --print-architecture)"; \
@@ -69,7 +69,7 @@ RUN set -eux; \
         apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* ~/.composer
 
 RUN echo "upload_max_filesize = 100M" >> /usr/local/etc/php/conf.d/20-pimcore.ini; \
-    echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/20-pimcore.ini; \
+    echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/20-pimcore.ini; \
     echo "short_open_tag = off" >> /usr/local/etc/php/conf.d/20-pimcore.ini; \
     echo "post_max_size = 100M" >> /usr/local/etc/php/conf.d/20-pimcore.ini
 

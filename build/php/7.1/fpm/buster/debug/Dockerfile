@@ -5,7 +5,7 @@
 #
 FROM php:7.1-fpm-buster
 
-LABEL maintainer="dominik@pfaffenbauer.at"
+LABEL maintainer="ales@stimulus.com.au"
 
 RUN set -eux; \
     DPKG_ARCH="$(dpkg --print-architecture)"; \
@@ -43,7 +43,7 @@ RUN set -eux; \
         rm -rf ImageMagick*; \
     \
     ##<version>##
-    docker-php-ext-configure gd -enable-gd --with-freetype --with-jpeg --with-webp; \
+    docker-php-ext-configure gd -enable-gd --with-freetype --with-jpeg --with-webp --with-freetype-dir --enable-gd-native-ttf --with-webp-dir --with-jpeg-dir --with-png-dir --with-gd; \
     docker-php-ext-install xmlrpc gd; \
     pecl install imagick; \
     ##</version>##
