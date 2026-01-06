@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t stimulusau/pimcore:PHP7.3-fpm-bullseye . && docker push stimulusau/pimcore:PHP7.3-fpm-bullseye
+docker build --progress plain -t stimulusau/pimcore:PHP7.3.33-fpm-bullseye . && docker push stimulusau/pimcore:PHP7.3.33-fpm-bullseye

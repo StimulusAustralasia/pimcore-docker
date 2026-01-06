@@ -3,7 +3,7 @@
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
-FROM php:7.3-fpm-bullseye
+FROM php:7.3.33-fpm-bullseye
 
 LABEL maintainer="ales@stimulus.com.au"
 
@@ -12,7 +12,7 @@ RUN set -eux; \
     mkdir -p /usr/share/man/man1; \
     apt-get update; \
     apt-get install -y lsb-release; \
-    echo "deb http://deb.debian.org/debian $(lsb_release -sc)-backports main" > /etc/apt/sources.list.d/backports.list; \
+    echo "deb http://archive.debian.org/debian $(lsb_release -sc)-backports main" > /etc/apt/sources.list.d/backports.list; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         autoconf automake libtool nasm make pkg-config libz-dev build-essential openssl g++ \
@@ -52,7 +52,7 @@ RUN set -eux; \
     pecl install imagick; \
     ##</version>##
     pecl install apcu; \
-    pecl install redis; \
+    pecl install redis-5.3.7; \
     docker-php-ext-enable redis imagick apcu; \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install imap; \
@@ -83,7 +83,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
       autoconf automake libtool nasm make pkg-config libz-dev build-essential g++ iproute2; \
-    pecl install xdebug-2.9.8; \
+    pecl install xdebug-3.1.6; \
     docker-php-ext-enable xdebug; \
     apt-get autoremove -y; \
     apt-get remove -y autoconf automake libtool nasm make pkg-config libz-dev build-essential g++; \
