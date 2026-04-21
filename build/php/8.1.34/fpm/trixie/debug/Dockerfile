@@ -82,7 +82,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
       autoconf automake libtool nasm make pkg-config libz-dev build-essential g++ iproute2; \
-    pecl install xdebug; \
+    pecl install xdebug-3.2.2; \
     docker-php-ext-enable xdebug; \
     apt-get autoremove -y; \
     apt-get remove -y autoconf automake libtool nasm make pkg-config libz-dev build-essential g++; \
